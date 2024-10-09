@@ -19,7 +19,7 @@
 </style>
 
 <div class="container">
-  <form action="<?= base_url('update/' . $ambildata['ID_PENDAFTARAN']) ?>" method="POST">
+  <form action="<?= base_url('edit/' . $ambildata['ID_PENDAFTARAN']) ?>" method="POST">
     <div class="container-sm bg-secondary-subtle my-3 px-3 pt-3 border border-secondary" style="width: 500px ">
       <h1 class="row justify-content-center py-1 fw-bold">Edit Data</h1>
       <hr>
@@ -40,7 +40,7 @@
         </div>
         <div class="col">
           <p class="border border-secondary p-1"><?= esc($ambildata['ID_PENDAFTARAN']) ?></p>
-          <input type="text" name="NAMA" class="form-control" value="<?= esc($ambildata['ID_PENDAFTARAN']) ?>" required>
+          <input type="text" name="NAMA" class="form-control" value="<?= esc($ambildata['NAMA']) ?>" required>
           <input type="text" name="AGAMA" class="form-control" value="<?= esc($ambildata['AGAMA']) ?>" required>
           <input type="text" name="TEMPATLAHIR" class="form-control" value="<?= esc($ambildata['TEMPATLAHIR']) ?>" required>
           <input type="number" name="TINGGIBADAN" class="form-control" value="<?= esc($ambildata['TINGGIBADAN']) ?>" onkeypress="validateNumberInput(event)" required>
@@ -50,7 +50,7 @@
           <input type="number" name="NOMOR_DOKUMEN" class="form-control" value="<?= esc($ambildata['NOMOR_DOKUMEN']) ?>" onkeypress="validateNumberInput(event)" required>
           <input type="text" name="NAMAHOBBY" class="form-control" value="<?= esc($ambildata['NAMAHOBBY']) ?>" required>
           <input type="text" name="ALAMAT" class="form-control" value="<?= esc($ambildata['ALAMAT']) ?>" required>
-          <input type="text" name="USERNAME" class="form-control" value="<?= esc($ambildata['USERNAME']) ?>" required>
+          <p class="border border-secondary p-1"><?= esc($ambildata['USERNAME']) ?></p>
         </div>
       </div>
       <div class="row p-3"><button type="submit" class="btn btn-success mt-2">Simpan</button></div>

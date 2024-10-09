@@ -53,6 +53,7 @@
     </div>
   <?php endif; ?>
 
+  <!-- Kapan2 ganti jadi container -->
   <table class="table">
     <thead>
       <tr>
@@ -63,6 +64,7 @@
         <th scope="col">Tinggi Badan</th>
         <th scope="col">Berat Badan</th>
         <th scope="col">Jenis Dokumen</th>
+        <th scope="col">Nama Hubungan</th>
         <th scope="col">Nomor Dokumen</th>
         <th scope="col">Nama Hobby</th>
         <th scope="col">Alamat</th>
@@ -82,6 +84,7 @@
           <td><?= esc($data['NAMAHUBUNGAN']) ?></td>
           <td><?= esc($data['JENIS_DOKUMEN']) ?></td>
           <td><?= esc($data['NOMOR_DOKUMEN']) ?></td>
+          <td><?= esc($data['NAMAHOBBY']) ?></td>
           <td><?= esc($data['ALAMAT']) ?></td>
           <td><?= esc($data['USERNAME']) ?></td>
           <td>
@@ -113,6 +116,6 @@
     }
   };
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </html>

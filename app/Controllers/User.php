@@ -1,5 +1,7 @@
 <?php
 
+// Post request belum diamankan
+
 namespace App\Controllers;
 use App\Models\DaftarModel;
 use CodeIgniter\Controller;
@@ -10,7 +12,14 @@ class User extends Controller
       return view('home');
     }
 
+
     public function login_get() {
+      //Redundant login check, gk bisa buat function terus dipanggil didalem
+      $session = session();
+      if($session->isLoggedIn == True) {
+        return redirect()->to("/dashboard");
+      }
+
       return view('/login');
     }
 
@@ -21,7 +30,6 @@ class User extends Controller
       $username = $this->request->getPost("USERNAME"); 
       $password = $this->request->getPost("PASSWORD");
 
-      // Error
       $data = $DaftarModel->where("USERNAME", $username)->first(); 
 
       if ($data) {
@@ -32,7 +40,7 @@ class User extends Controller
           $session->set([
             "NAMA" => $data["NAMA"],
             "ID_PENDAFTARAN" => $data["ID_PENDAFTARAN"],
-            "logged_in" => TRUE
+            "isLoggedIn" => True
           ]);
           $session->setFlashdata('success', "Welcome " . $data["USERNAME"]);
           
@@ -48,6 +56,12 @@ class User extends Controller
     }
 
     public function register_get() {
+      
+       //Redundant login check
+      $session = session();
+      if($session->isLoggedIn == True) {
+        return redirect()->to("/dashboard");
+      }
         return view('/register');
     }
 
@@ -70,6 +84,7 @@ class User extends Controller
         "PASSWORD"        => $this->hashPassword($this->request->getPost("PASSWORD"))
       ];
       
+      // GK BISA CATCH ERROR DATABASE
       if ($DaftarModel->save($data)) {
         $session->setFlashdata("success", 'Pendaftaran Berhasil');
       } else {
@@ -92,15 +107,6 @@ class User extends Controller
       $session->destroy();
       return redirect()->to('/');
     }
-
-    // Gk bisa dipanggil dalam function bawah, tapi hard code langsung bisa, gk ngerti kenapa :(
-    // public function loggedInCheck() {
-    //   $session = session();
-    //   if($session->logged_in != True) {
-    //     $session->setFlashdata('error', "Anda belum login");
-    //     return redirect()->to('/login');
-    //   }
-    // }
 
   private function hashPassword($password) {
     return password_hash($password, PASSWORD_DEFAULT);

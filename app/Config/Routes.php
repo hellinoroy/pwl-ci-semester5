@@ -13,9 +13,9 @@ $routes->get('/register', 'User::register_get');
 $routes->post("/register", "User::register_post");
 $routes->get("/logout", "User::logout");
 
-
-$routes->get('/edit/(:num)', 'dashboard::edit/$1');
-
-$routes->get("/dashboard", "dashboard::dashboard_get");
-$routes->get("/profile", "dashboard::profile_get");
-
+// filter hanya ngecek login pada session tidak ada authorization, dll
+$routes->get('/edit/(:num)', 'dashboard::edit/$1', ["filter" => "isLoggedIn"]);
+$routes->post('/edit/(:num)', 'dashboard::update/$1', ["filter" => "isLoggedIn"]);
+$routes->get("/dashboard", "dashboard::dashboard_get", ["filter" => "isLoggedIn"]);
+$routes->get("/profile", "dashboard::profile_get", ["filter" => "isLoggedIn"]);
+$routes->get('/delete/(:num)', 'dashboard::delete/$1', ["filter" => "isLoggedIn"]);
